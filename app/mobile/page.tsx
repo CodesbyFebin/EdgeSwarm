@@ -1,5 +1,5 @@
-import './mobile.css';
 'use client';
+import './mobile.css';
 import {useEffect,useRef,useState} from 'react';
 type Job={id:string;title:string;input:string;status:string;reward:number;result?:{output:string;envelope:{resultHash:string}};verdict?:{pass:boolean;checks:Record<string,boolean>};payment?:{amount:number;unit:string;network:string};receipt?:unknown};
 const pages=['Home','Jobs','Job Details','Executing','Verification','Settlement','Agents','Payments','Use Cases','Profile'];
