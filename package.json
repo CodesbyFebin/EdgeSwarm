@@ -18,5 +18,29 @@
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0"
-  }
+  },
+  "description": "EdgeSwarm is an open-source verifiable edge-agent work prototype with signed task evidence, deterministic replay verification, a Next.js dashboard, and simulated settlement; Solana Devnet escrow is planned, not deployed.",
+  "homepage": "https://codesbyfebin.github.io/EdgeSwarm/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CodesbyFebin/EdgeSwarm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/CodesbyFebin/EdgeSwarm/issues"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "edgeswarm",
+    "edge-agent",
+    "verifiable-compute",
+    "agent-network",
+    "signed-evidence",
+    "p256-ecdsa",
+    "deterministic-replay",
+    "nextjs",
+    "typescript",
+    "android-kotlin",
+    "solana-devnet-concept",
+    "simulated-settlement"
+  ]
 }
