@@ -7,6 +7,8 @@ import java.security.KeyPairGenerator
 import java.security.KeyStore
 import java.security.MessageDigest
 import java.security.Signature
+import java.security.KeyFactory
+import java.security.spec.X509EncodedKeySpec
 import java.util.Base64
 
 object AgentCrypto {
@@ -30,6 +32,17 @@ object AgentCrypto {
         signature.update(payload)
         return Base64.getEncoder().encodeToString(signature.sign())
     }
+    fun verify(payload: ByteArray, signatureBase64: String, publicKeySpkiBase64: String): Boolean =
+        try {
+            val keyBytes = Base64.getDecoder().decode(publicKeySpkiBase64)
+            val key = KeyFactory.getInstance("EC").generatePublic(X509EncodedKeySpec(keyBytes))
+            val verifier = Signature.getInstance("SHA256withECDSA")
+            verifier.initVerify(key)
+            verifier.update(payload)
+            verifier.verify(Base64.getDecoder().decode(signatureBase64))
+        } catch (_: Exception) {
+            false
+        }
     fun sha256(value: String): String = MessageDigest.getInstance("SHA-256").digest(value.toByteArray(Charsets.UTF_8)).joinToString("") { "%02x".format(it) }
     fun publicKeyBase64(): String = Base64.getEncoder().encodeToString(keyPair().public.encoded)
 }
