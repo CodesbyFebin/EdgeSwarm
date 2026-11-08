@@ -1,6 +1,6 @@
 # Deploy the app separately from the landing page
 
-Keep `index.html` and GitHub Pages unchanged. Deploy this repository's root Next.js application to Vercel. Pages is a static landing page, not the Jobs API.
+Keep GitHub Pages as the landing page; its launch links point to the separate live app. Deploy this repository's root Next.js application to Vercel. Pages is a static landing page, not the Jobs API.
 
 ## Vercel
 
@@ -10,7 +10,7 @@ Keep `index.html` and GitHub Pages unchanged. Deploy this repository's root Next
 4. Deploy. `/api/health` returns 503 on Vercel if storage configuration is missing. It checks configuration, not PostgreSQL connectivity.
 5. Run `BASE_URL=https://YOUR-DEPLOYMENT node scripts/smoke.mjs`. If Deployment Protection is enabled, use an approved test path or perform the flows in the authenticated browser. Do not publicly disclose a bypass secret.
 6. Manually test `/`, `/mobile`, and `/devnet-demo`. A wallet test requires explicit approval and Devnet-only test SOL. No on-chain test was performed in this audit.
-7. Only after the live job/tamper flows pass, add the actual app URL to the Pages landing page. No live URL is asserted in this repository yet.
+7. Only after the live job/tamper flows pass, add the actual app URL to the Pages landing page. Verified app URL: https://edge-swarm.vercel.app/ (also https://www.agentswarm.in/). Both passed the live API smoke test for commit `785a40b`.
 
 The app fails closed on Vercel without shared storage. It never falls back to filesystem or process memory there. PostgreSQL uses expiring per-session records and revision-checked atomic updates, with retry on conflicts. Tables initialize lazily on first use. Worker/verifier private keys are stored server-side in those records to preserve demo signing identity across instances; protect the database as secret material.
 
