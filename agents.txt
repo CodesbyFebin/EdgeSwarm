@@ -1,0 +1,35 @@
+# EdgeSwarm — guidance for coding agents
+
+EdgeSwarm is a prototype for bounded agent work with evidence verification and policy-gated settlement. Read README.md and SUBMISSION.md before modifying code.
+
+## Verified repository scope
+- Next.js 15 / React 19 / TypeScript application with local Jobs API and a ten-screen mobile prototype at /mobile.
+- Node regression tests and Next.js production build passed in GitHub Actions run #22 (2026-11-08).
+- Android Kotlin local signing prototype; P-256 verifier code is in draft PR #1, but Android-produced evidence has not been validated end-to-end.
+- Demo-credit receipts are simulated; no deployed Solana escrow or real funds transfer is established.
+
+## Commands
+- Clone: git clone https://github.com/CodesbyFebin/EdgeSwarm.git
+- Install: npm install
+- Test: npm test
+- Build: npm run build
+- Local demo: npm run dev
+
+The package is private in package.json. Do not suggest `npm install EdgeSwarm` as a published package.
+
+## Rules
+- Do not claim real-device execution, independent ProofAgent deployment, Mainnet/Devnet settlement, or production security without reproducible evidence.
+- Do not expose the unauthenticated local API publicly or use real funds.
+- Treat Android P-256 worker signatures and Solana Ed25519 wallet signatures as different protocols.
+- Preserve Apache-2.0 notices and keep untrusted evidence settlement-ineligible unless explicitly authorized by a tested policy.
+- Avoid unrelated formatting or dependency changes; add regression tests for fixes.
+
+## Key paths
+- app/: Next.js UI and routes
+- lib/: local job and verification logic
+- android/: Android source
+- tests/: Node tests
+- .github/workflows/: CI
+- README.md, SUBMISSION.md: scope, claims, and demo limitations
+
+Source: https://github.com/CodesbyFebin/EdgeSwarm

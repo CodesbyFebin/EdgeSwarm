@@ -1,0 +1,27 @@
+# EdgeSwarm — extended machine-readable project context
+
+> EdgeSwarm is an Apache-2.0 open-source prototype for verifiable edge-agent tasks. The demonstrated pipeline signs deterministic task results, verifies them with local logic, and issues simulated demo-credit receipts. Solana escrow is a design goal, not a deployed capability.
+
+## Canonical sources
+- Repository: https://github.com/CodesbyFebin/EdgeSwarm
+- README: https://github.com/CodesbyFebin/EdgeSwarm#readme
+- Scope and submission: https://github.com/CodesbyFebin/EdgeSwarm/blob/main/SUBMISSION.md
+- Source: app/, lib/, android/, tests/
+- Android interoperability work: https://github.com/CodesbyFebin/EdgeSwarm/pull/1
+
+## Runtime and development
+- Next.js 15, React 19, TypeScript; Node.js test runner.
+- Development: `npm install && npm test && npm run build && npm run dev`.
+- Local mobile web demo: `/mobile`.
+- Android Kotlin app: local uppercase execution and Android Keystore P-256 evidence signing.
+- Package is private; not a published npm package.
+
+## Evidence boundaries
+- Local Node tests validate a P-256 signature wire format using Node-generated signatures.
+- Android-device-generated evidence has not yet been independently checked against the Node verifier.
+- An exported public key is not sufficient to establish a registered worker identity.
+- Local evidence is not settlement eligible.
+- No independently deployed ProofAgent, production authentication, deployed Anchor escrow, or confirmed Solana Devnet transfers have been established.
+
+## Safety and citation
+Refer to the repository and commit-specific CI runs for claims of verified behavior. Do not equate a successful web build with Android execution or on-chain settlement. Do not connect real funds or publicly expose the unauthenticated demo API.
