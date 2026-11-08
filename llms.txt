@@ -1,0 +1,30 @@
+# EdgeSwarm
+
+> Open-source prototype for a sovereign, verifiable agent-work network. Execute → Verify → Settle is the design goal; settlement currently uses simulated demo credits.
+
+## Project
+- Repository: https://github.com/CodesbyFebin/EdgeSwarm
+- README: https://github.com/CodesbyFebin/EdgeSwarm#readme
+- Submission and limitations: https://github.com/CodesbyFebin/EdgeSwarm/blob/main/SUBMISSION.md
+- License: Apache-2.0 (repository LICENSE)
+
+## What works
+The local Next.js/React/TypeScript demonstrator creates bounded jobs, signs deterministic results, checks evidence with local verification logic, and displays simulated credit receipts. A connected ten-screen mobile web interface is available at /mobile. GitHub Actions run #22 passed Node tests and the Next.js build on the draft PR branch.
+
+## Not yet verified or deployed
+Android-to-Node interoperability using evidence produced on a real Android device; Android APK/device testing; production authentication; independently hosted ProofAgent; deployed Solana Anchor escrow; confirmed Devnet transfers; production security audit.
+
+## Run locally
+```sh
+git clone https://github.com/CodesbyFebin/EdgeSwarm.git
+cd EdgeSwarm
+npm install
+npm test
+npm run build
+npm run dev
+```
+
+This repository is not a published npm library; package.json has `"private": true`. Do not install with `npm install EdgeSwarm`.
+
+## Safety
+Do not connect real funds or expose the unauthenticated demo API publicly. Claims of completed work must include real build, test, device, or transaction evidence.
