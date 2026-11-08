@@ -1,3 +1,20 @@
+# EdgeSwarm — Verifiable Edge-Agent Work Prototype
+
+**Quick answer (version 0.1.0, November 2026):** EdgeSwarm is an Apache-2.0 open-source Next.js and Kotlin prototype for bounded edge-agent tasks. Its web demo creates jobs, signs deterministic results, checks evidence locally, and shows simulated credit receipts. Android P-256 signing exists as a local prototype; real-device interoperability and Solana Devnet settlement are not yet verified.
+
+**Run locally (Node.js 22 recommended):**
+
+```bash
+git clone https://github.com/CodesbyFebin/EdgeSwarm.git
+cd EdgeSwarm
+npm install
+npm test
+npm run build
+npm run dev
+```
+
+See [source](https://github.com/CodesbyFebin/EdgeSwarm), [issues](https://github.com/CodesbyFebin/EdgeSwarm/issues), [license](LICENSE), [submission status](SUBMISSION.md), and [development history](CHANGELOG.md). This is a private npm package, **not** a published `npm install EdgeSwarm` dependency. Never connect real funds to the unauthenticated demo.
+
 
 > **Mobile integration update:** A connected ten-screen mobile prototype is available at `/mobile` after running the Next.js server. It uses the existing local Jobs API and supports job creation, signed deterministic execution, verification checks, and simulated demo-credit receipts. Mobile swipe navigation is supported. This is **not** the complete uploaded Embla/Framer Motion source package; that full source has been separately audited and packaged. No wallet connection, real Solana Devnet transfer, independent verifier deployment, or production authentication has been verified. Do not expose the unauthenticated demo API publicly.
 
@@ -624,8 +641,8 @@ README images need meaningful alt text. Keep section titles stable so inbound li
 
 **Snapshot date:** November 8, 2026.  
 **Inspected public repository:** `CodesbyFebin/EdgeSwarm`.  
-**Observed root contents:** `LICENSE` only.  
-**This README:** generated documentation and visual assets for a proposed future commit.  
+**Observed root contents:** The repository now contains a Next.js demo, Kotlin Android prototype, tests, and documentation.  
+**This README:** a mixture of implemented local-demo documentation and proposed product architecture; read feature status before treating a design as deployed.  
 **Concept GIF:** generated presentation asset; not a real execution capture.  
 **Recorded demo:** not yet available.  
 **Live network metrics:** not available.  
