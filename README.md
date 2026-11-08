@@ -1,3 +1,7 @@
+
+
+> **Implementation update (2026-11-08):** A local Next.js demonstrator is now committed in `app/`, `lib/`, and `tests/`. Run `npm install && npm test && npm run dev` locally. It includes signed worker results, local separately keyed verification, deterministic replay, and **simulated demo-credit settlement only**. It does **not** have production authentication, a deployed independent verifier, Android execution, or real Solana payments. Do not deploy it publicly or connect real funds. The frontend production build has not been verified.
+
 <div align="center">
 
 
