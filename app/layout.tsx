@@ -3,10 +3,13 @@ import './globals.css';
 
 const repo = 'https://github.com/CodesbyFebin/EdgeSwarm';
 export const metadata: Metadata = {
-  title: 'EdgeSwarm — Verifiable Edge-Agent Work Prototype',
-  description: 'Open-source Next.js demonstration of signed edge-agent task results, deterministic replay verification, and simulated credit settlement. Solana Devnet payments are not deployed.',
+  metadataBase: new URL('https://edge-swarm.vercel.app'),
+  title: 'EdgeSwarm — Signed Work, Verified Results, Solana Devnet',
+  description: 'A live full-stack verifiable-work prototype with signed task evidence, deterministic replay, PostgreSQL-backed sessions, and wallet-approved Solana Devnet payment intents.',
   keywords: ['EdgeSwarm', 'verifiable edge computing', 'signed task evidence', 'deterministic replay', 'Next.js', 'Android Kotlin', 'Solana Devnet concept'],
-  alternates: { canonical: repo },
+  alternates: { canonical: '/' },
+  openGraph: {title:'EdgeSwarm — Signed Work. Verified Results.', description:'Inspect signed evidence, reject tampered work, and prepare a job-linked Solana Devnet payment.', url:'https://edge-swarm.vercel.app', type:'website'},
+  twitter: {card:'summary',title:'EdgeSwarm — Verifiable Edge-Agent Work',description:'Signed evidence, replay checks and job-linked Solana Devnet payment intents.'},
   robots: { index: true, follow: true }
 };
 const schema = {

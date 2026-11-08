@@ -13,3 +13,11 @@ All job settlement uses simulated credits. `/devnet-demo` is a separate wallet t
 Four moderate npm advisories remain in the Solana web3.js transitive dependency chain at audit time. No high or critical findings were reported by the captured npm audit; this is not a guarantee that the application has no vulnerabilities. Major dependency migrations require compatibility tests, not a blind `npm audit fix --force`.
 
 CSP blocks embedding, objects, and base-URI changes; it is not a strict nonce-based script policy. Authentication, durable financial accounting, independent verifier infrastructure, distributed authorization, complete secret scanning and penetration testing remain outside the verified implementation.
+
+## Verified-job Solana Devnet payments
+
+The new `/api/jobs/:id/solana` API creates a fixed 0.001 test-SOL payment intent only for valid signed job evidence. The payer and recipient are user-selected on-curve wallet addresses and become immutable once prepared. The app constructs a transfer plus a Memo containing job ID, intent ID and evidence digest. It does not custody wallet keys.
+
+Confirmation uses the fixed public Devnet RPC and checks the genesis hash, confirmed/finalized status, transaction success, signature, blockhash, payer signer, exact recipient and amount, memo, balance deltas and unexpected programs/instructions. Transaction evidence is persisted with the temporary session and can be exported. A pasted signature alone is not a receipt.
+
+This is centralized verifier-gated wallet payment, **not on-chain escrow**. The chain executes transfer/Memo instructions, not the job-verification policy. Users can send payments outside the app; no global on-chain double-release protection exists. The recipient is not an authenticated worker. RPC responses are a trust dependency. Public RPC rate limits, session expiry, missing wallet support and insufficient test SOL can block the flow. If signing or confirmation is ambiguous, inspect wallet history and reconcile; do not blindly resend. Synthetic RPC fixtures test validation rules, not real transaction landing.

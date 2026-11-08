@@ -12,7 +12,7 @@ A full-stack prototype for verifiable edge-agent tasks, built with Next.js, Post
 [![Network: Solana Devnet](https://img.shields.io/badge/Network-Solana_Devnet-9945FF)](docs/DEVNET_JUDGE_DEMO.md)
 [![Stage: Working prototype](https://img.shields.io/badge/Stage-Working_prototype-14F195)](docs/AUDIT.md)
 
-<img src="https://github.com/user-attachments/assets/0f25b2a7-0606-4e58-92c6-c75d310eb3b0" alt="EdgeSwarm verifiable edge-agent work project" width="100%" />
+
 
 </div>
 
@@ -28,9 +28,9 @@ The current workload is deliberately small: uppercase a bounded text input and i
 2. Click **Execute → Verify → Simulate settlement**. Inspect the signed result, verification checks, and receipt.
 3. Enable **Tamper with result**, create another job, and run it. It should be rejected without a simulated payment.
 4. Open the [mobile app](https://edge-swarm.vercel.app/mobile) to follow the same backend workflow across ten screens.
-5. Try the separate [Solana Devnet wallet demo](https://edge-swarm.vercel.app/devnet-demo) with a compatible wallet. Any transfer requires wallet approval and Devnet test SOL.
+5. For a verified job, open **Pay verified job on Solana Devnet**, select a recipient, and review the fixed 0.001 test-SOL intent before wallet approval. For an independent transfer, try the separate [Solana Devnet wallet demo](https://edge-swarm.vercel.app/devnet-demo) with a compatible wallet. Any transfer requires wallet approval and Devnet test SOL.
 
-**Payment boundary:** Job credits are simulated. The standalone Devnet demo can construct a wallet-approved test-SOL transfer; it is not job settlement or escrow. No confirmed transaction is claimed without an inspectable signature.
+**Payment boundary:** Job credits are simulated. Verified jobs now expose a **job-linked Devnet payment flow**: a wallet-approved 0.001 test-SOL transfer with an evidence-bound Memo and server-side RPC checks. The recipient is chosen by the user; this is not on-chain escrow. The standalone Devnet demo remains separate. No confirmed transaction is claimed without an inspectable signature.
 
 ## What is working
 
@@ -44,7 +44,8 @@ The current workload is deliberately small: uppercase a bounded text input and i
 | Browser-session isolation | HttpOnly SameSite cookie, same-origin writes, bounded JSON and job counts |
 | Mobile interface | Ten-screen prototype connected to the Jobs API; some secondary controls are labeled UI-only |
 | Android prototype | Kotlin P-256 signing/export code; debug APK built in CI, physical-device interoperability pending |
-| Solana wallet demo | Devnet transfer construction and confirmation UI, separate from verified jobs |
+| Job-linked Solana Devnet | Immutable signed intent, exact transfer + job-bound Memo, server-side confirmation checks and receipt export |
+| Standalone wallet demo | Separate Devnet transfer construction UI |
 
 ## Architecture
 
@@ -80,7 +81,9 @@ Without a database URL, local sessions live in process memory. Restarting clears
 
 | Route | Purpose |
 |---|---|
-| `/` | Connected dashboard, task execution and receipts |
+| `/` | Final uploaded-app visual shell with ten connected workflow screens |
+| `/dashboard` | Desktop task dashboard and receipts |
+| `/jobs/:id/pay` | Verified-job Devnet payment and reconciliation |
 | `/mobile` | Mobile workflow |
 | `/devnet-demo` | Separate wallet-approved Solana Devnet transfer demo |
 | `/api/health` | Configuration health; not a database connectivity probe |
@@ -90,7 +93,7 @@ Without a database URL, local sessions live in process memory. Restarting clears
 
 ## Tests and deployment evidence
 
-The hardening pass expanded the baseline from **16 to 32 automated tests**. Production build, TypeScript checks, hosted PostgreSQL concurrency tests, and live API smoke tests passed. The final checks for commit `14e8b2c` include the web build, API smoke test, and Android debug APK build.
+The hardening and Solana integration passes expanded the baseline from **16 to 64 automated tests**, including adversarial payment-validation fixtures. Production build, TypeScript checks, hosted PostgreSQL concurrency tests, and live API smoke tests passed. The final checks for commit `14e8b2c` include the web build, API smoke test, and Android debug APK build.
 
 - [CI run and Android debug APK artifact](https://github.com/CodesbyFebin/EdgeSwarm/actions/runs/42506685797)
 - [Audit findings and verified scope](docs/AUDIT.md)
@@ -102,7 +105,7 @@ The captured npm audit reported **zero high/critical and four moderate findings*
 
 ## Roadmap, without inflated claims
 
-- **Next:** bind a wallet-approved Devnet payment to a verified job and validate its on-chain transaction server-side.
+- **Implemented:** verified-job Devnet intents, wallet transaction construction, Memo evidence binding, server-side transaction validation and downloadable receipts. Real transaction evidence must be linked separately; synthetic test fixtures are not chain evidence.
 - **Then:** authenticated identities, independent verifier service, persistent user-owned receipts, and physical Android interoperability tests.
 - **Later:** an on-chain escrow program with authorized release, replay protection, refund paths, and adversarial tests.
 
