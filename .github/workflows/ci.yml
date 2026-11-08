@@ -1,7 +1,7 @@
-name: EdgeSwarm local-demo checks
+name: EdgeSwarm build and Android APK
 on:
   push:
-    branches: [main]
+    branches: [main, build/edgeagent-p256-interoperability]
   pull_request:
 permissions:
   contents: read
