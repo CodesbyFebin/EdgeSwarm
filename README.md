@@ -1,3 +1,5 @@
+> **Hardening update, 2026-11-08:** GitHub Pages remains the landing page. The Next.js app is prepared for a separate Vercel deployment using shared Neon PostgreSQL session storage. Public deployment is not yet verified. Demo sessions expire after 30 minutes; all job payments remain simulated. See [audit results](docs/AUDIT.md), [deployment instructions](docs/DEPLOYMENT.md), and [security limits](SECURITY.md). Older design sections below describe planned capabilities, not implemented guarantees.
+
 # EdgeSwarm — Verifiable Edge-Agent Work Prototype
 
 **Quick answer (version 0.1.0, November 2026):** EdgeSwarm is an Apache-2.0 open-source Next.js and Kotlin prototype for bounded edge-agent tasks. Its web demo creates jobs, signs deterministic results, checks evidence locally, and shows simulated credit receipts. Android P-256 signing exists as a local prototype; real-device interoperability and Solana Devnet settlement are not yet verified.

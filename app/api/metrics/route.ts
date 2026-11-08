@@ -1,1 +1,1 @@
-import {NextResponse} from 'next/server';import {engine} from '../../../lib/engine.mjs';export const runtime='nodejs';export async function GET(){return NextResponse.json(engine.metrics())}
+import {NextResponse} from 'next/server';import {withEngine} from '../../../lib/engine.mjs';export const runtime='nodejs';export async function GET(){try{return await withEngine((engine:any)=>NextResponse.json(engine.metrics()))}catch{return NextResponse.json({error:'Demo storage unavailable or request limit reached'},{status:503})}}

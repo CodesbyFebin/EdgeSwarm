@@ -13,9 +13,17 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - run: npm install --no-audit --no-fund
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm audit --audit-level=high
       - run: npm test
       - run: npm run build
+      - name: Production API smoke
+        run: |
+          npm start -- --hostname 127.0.0.1 --port 3100 > /tmp/edgeswarm.log 2>&1 &
+          SERVER_PID=$!
+          trap 'kill "$SERVER_PID"' EXIT
+          for i in $(seq 1 30); do curl --fail http://127.0.0.1:3100/api/health && break || sleep 1; done
+          node scripts/smoke.mjs
 
   android-debug-apk:
     runs-on: ubuntu-latest
