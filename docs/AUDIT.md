@@ -2,6 +2,17 @@
 
 Baseline: `0790837f4d2bc4bbf200f929dddb1803460187f8` on main. This is an engineering review and test pass, not an independent security certification or official hackathon score.
 
+## Final-app and Solana integration follow-up
+
+The user-provided Final EdgeSwarm App archive supplied the visual device shell, brand mark, swipe navigation and tab bar. Its filesystem backend, prepared-payment claims, Mainnet labels, fabricated sample earnings and TypeScript build-error suppression were not carried into the final integration. The screens were connected to the hardened session-scoped backend. Desktop functionality remains at `/dashboard`.
+
+- Final implementation: `9a0febb`, CI [42511366802](https://github.com/CodesbyFebin/EdgeSwarm/actions/runs/42511366802) passed web checks and Android APK build.
+- 64 automated tests passed, including adversarial transaction-validation fixtures. Build and TypeScript checks passed.
+- Live API smoke and real Devnet RPC intent smoke passed; the latter sends no funds.
+- An explicitly approved disposable-wallet test then sent 0.001 Devnet SOL through the live verified-job intent flow. Server-side confirmation, receipt persistence and idempotent confirmation passed. [Explorer](https://explorer.solana.com/tx/37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk?cluster=devnet); [public evidence](evidence/devnet-payment.json).
+- The first disposable process ended after funding but before transferring; no payment is claimed for it. A separately approved replacement test completed. No private-key files were created.
+- Remaining limits: centralized verifier trust; no on-chain escrow/global release guard; no authenticated recipient registration; browser wallet approval and physical Android execution not end-to-end tested; 4 moderate dependency findings remain.
+
 ## Evidence
 
 - Baseline: 16 Node tests passed.

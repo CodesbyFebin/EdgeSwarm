@@ -14,6 +14,8 @@ A full-stack prototype for verifiable edge-agent tasks, built with Next.js, Post
 
 
 
+<img src="docs/assets/final-app.png" alt="Actual live EdgeSwarm final mobile application" width="340" />
+
 </div>
 
 ## Why this exists
@@ -30,7 +32,7 @@ The current workload is deliberately small: uppercase a bounded text input and i
 4. Open the [mobile app](https://edge-swarm.vercel.app/mobile) to follow the same backend workflow across ten screens.
 5. For a verified job, open **Pay verified job on Solana Devnet**, select a recipient, and review the fixed 0.001 test-SOL intent before wallet approval. For an independent transfer, try the separate [Solana Devnet wallet demo](https://edge-swarm.vercel.app/devnet-demo) with a compatible wallet. Any transfer requires wallet approval and Devnet test SOL.
 
-**Payment boundary:** Job credits are simulated. Verified jobs now expose a **job-linked Devnet payment flow**: a wallet-approved 0.001 test-SOL transfer with an evidence-bound Memo and server-side RPC checks. The recipient is chosen by the user; this is not on-chain escrow. The standalone Devnet demo remains separate. No confirmed transaction is claimed without an inspectable signature.
+**Payment boundary:** Job credits are simulated. Verified jobs now expose a **job-linked Devnet payment flow**: a wallet-approved 0.001 test-SOL transfer with an evidence-bound Memo and server-side RPC checks. The recipient is chosen by the user; this is not on-chain escrow. The standalone Devnet demo remains separate. A real live-app end-to-end payment is recorded below; automated negative tests use synthetic RPC fixtures and are labeled as such.
 
 ## What is working
 
@@ -57,7 +59,11 @@ flowchart LR
   Worker --> Verify[Signature checks + deterministic replay]
   Verify -->|Accept| Credits[Simulated credit ledger + receipt]
   Verify -->|Reject| Block[No demo payment]
-  Wallet[User wallet] -->|Explicit approval| Devnet[Separate Solana Devnet transfer demo]
+  Verify -->|Valid evidence| Intent[Immutable signed Devnet intent]
+  Intent --> Wallet[User wallet approval]
+  Wallet --> Devnet[Transfer + job-bound Memo]
+  Devnet --> RPC[Server checks confirmed transaction]
+  RPC --> Receipt[Exportable payment receipt]
 ```
 
 The worker and verifier use different signing keys in the **same backend**. This demonstrates separation of roles, not independent organizations or trusted hardware. PostgreSQL stores temporary demo signing material server-side; it is never returned by the API.
@@ -91,11 +97,22 @@ Without a database URL, local sessions live in process memory. Restarting clears
 | `/api/jobs/:id` | Job inspection and bounded actions |
 | `/api/metrics` | Session-scoped demo metrics |
 
+## Real Solana Devnet evidence
+
+The final app completed a verified-job payment on **Solana Devnet**: a job was created and verified, a disposable payer signed a **0.001 test-SOL** transfer with the evidence-bound Memo, and the live API validated and persisted its confirmed receipt. Repeating confirmation did not create another payment.
+
+- [**Inspect the real transaction on Solana Explorer**](https://explorer.solana.com/tx/37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk?cluster=devnet)
+- [Exported job, signed intent and server-checked payment receipt](docs/evidence/devnet-payment.json)
+- [Integration contract and trust boundaries](docs/SOLANA_INTEGRATION.md)
+- Job: `5bb0aba5-8027-461e-a3ca-52bbc64161a6` · Slot: `520116661`
+
+This proves one Devnet transfer through the live API flow, not on-chain enforcement of job verification, production readiness, or Android execution. The test used disposable keys held only in process memory; no wallet private keys were committed. The browser wallet-approval path still requires a separate compatible-wallet test.
+
 ## Tests and deployment evidence
 
-The hardening and Solana integration passes expanded the baseline from **16 to 64 automated tests**, including adversarial payment-validation fixtures. Production build, TypeScript checks, hosted PostgreSQL concurrency tests, and live API smoke tests passed. The final checks for commit `14e8b2c` include the web build, API smoke test, and Android debug APK build.
+The hardening and Solana integration passes expanded the baseline from **16 to 64 automated tests**, including adversarial payment-validation fixtures. Production build, TypeScript checks, hosted PostgreSQL concurrency tests, and live API smoke tests passed. The final-app integration commit `9a0febb` passed the web build, 64 tests, API smoke test and Android debug APK build in CI. Live API and real-RPC intent smoke tests also passed.
 
-- [CI run and Android debug APK artifact](https://github.com/CodesbyFebin/EdgeSwarm/actions/runs/42506685797)
+- [CI run and Android debug APK artifact](https://github.com/CodesbyFebin/EdgeSwarm/actions/runs/42511366802)
 - [Audit findings and verified scope](docs/AUDIT.md)
 - [Vercel deployment and environment setup](docs/DEPLOYMENT.md)
 - [Security model and limitations](SECURITY.md)

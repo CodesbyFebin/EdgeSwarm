@@ -8,8 +8,9 @@ const base=process.env.BASE_URL??'https://edge-swarm.vercel.app';
 const rpc=new Connection(DEVNET_RPC,{commitment:'confirmed',disableRetryOnRateLimit:true});assert.equal(await rpc.getGenesisHash(),DEVNET_GENESIS);
 const payer=Keypair.generate(),recipient=Keypair.generate().publicKey;
 console.log('Disposable Devnet payer:',payer.publicKey.toBase58());console.log('Disposable recipient:',recipient.toBase58());
-const airdrop=await rpc.requestAirdrop(payer.publicKey,1_000_000_000);console.log('Devnet faucet request signature:',airdrop);
-await rpc.confirmTransaction(airdrop,'confirmed');assert.ok(await rpc.getBalance(payer.publicKey)>=1_010_000);
+let airdrop=null;
+if(process.env.FAUCET_MODE==='browser'){writeFileSync('../devnet-public-test-wallet.json',JSON.stringify({payer:payer.publicKey.toBase58(),recipient:recipient.toBase58()}));console.log('Awaiting official faucet funding (private key only in process memory)');for(let attempt=0;attempt<60;attempt++){console.log('Waiting for funding',attempt);if(await rpc.getBalance(payer.publicKey)>=1_010_000)break;if(attempt===59)throw Error('Official faucet funding unavailable; no transfer sent');await new Promise(resolve=>setTimeout(resolve,5000))}}else{airdrop=await rpc.requestAirdrop(payer.publicKey,1_000_000_000);console.log('Devnet faucet request signature:',airdrop);await rpc.confirmTransaction(airdrop,'confirmed')}
+assert.ok(await rpc.getBalance(payer.publicKey)>=1_010_000);
 const first=await fetch(base+'/api/jobs');assert.equal(first.status,200);const cookie=first.headers.get('set-cookie')?.split(';')[0];assert.ok(cookie);
 async function call(path,body){const r=await fetch(base+path,{method:body?'POST':'GET',headers:{cookie,origin:new URL(base).origin,'content-type':'application/json'},body:body?JSON.stringify(body):undefined});const data=await r.json();if(!r.ok)throw Error(JSON.stringify(data));return data}
 const job=await call('/api/jobs',{title:'Verified Devnet end-to-end evidence',input:'signed work verified before payment',reward:50});

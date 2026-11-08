@@ -1,0 +1,117 @@
+{
+  "testedAt": "2026-11-08T18:50:22.513Z",
+  "app": "https://edge-swarm.vercel.app",
+  "cluster": "devnet",
+  "payer": "2GknRAVAmjv7WNiHiCtahsjVbjzJK5SctiNBbdfXsrav",
+  "recipient": "51XBcdmMKU2kE8V2UVxVmaZAiorbUH9qEQA87h8zmyXB",
+  "lamports": 1000000,
+  "airdrop": null,
+  "signature": "37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk",
+  "explorer": "https://explorer.solana.com/tx/37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk?cluster=devnet",
+  "receipt": {
+    "version": "edgeswarm-public-receipt-v1",
+    "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+    "title": "Verified Devnet end-to-end evidence",
+    "taskHash": "b6d2ea6f92db42b286d78003942883e46eb546c406f2d92b90d6078e4fcbcced",
+    "result": {
+      "output": "SIGNED WORK VERIFIED BEFORE PAYMENT",
+      "envelope": {
+        "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+        "nonce": "219b3da5-a327-4d01-984a-fc17a8f0deb5",
+        "reward": 50,
+        "taskHash": "b6d2ea6f92db42b286d78003942883e46eb546c406f2d92b90d6078e4fcbcced",
+        "expiresAt": 1794164419013,
+        "workerPub": "MCowBQYDK2VwAyEAxc+kS2MAKZJMprNBSDK4GFG4UDmErewxWi4xhHw9zQM=",
+        "policyHash": "56f8405cdc2c93a31518a198cd7bb110fdffe162c195aba2568c793198195079",
+        "resultHash": "8519bf0d129418a4e5271e5475819ae7dcdf0e9d2111221860d84b67a37a0f1e",
+        "assignmentId": "d5d2f17b-eb59-4236-8bfc-398f5061aff0"
+      },
+      "signature": "N4fY/I0uQ5f/fvOhAkl7YkIO6ppGl9Iu0yvN5EVdH+LP5SD39cVGmBUeOKdap1r+ln0KhyvLECq27v9uElj1BQ=="
+    },
+    "verdict": {
+      "at": "2026-11-08T18:50:19.331Z",
+      "pass": true,
+      "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+      "checks": {
+        "task": true,
+        "nonce": true,
+        "expiry": true,
+        "policy": true,
+        "replay": true,
+        "reward": true,
+        "identity": true,
+        "integrity": true,
+        "signature": true,
+        "assignment": true
+      },
+      "method": "deterministic-replay",
+      "signature": "mceEvwRW41x8jEmMQsGY1Qm1pOH8fma/mHHP9Uda0l6cVPXRefObxkbzr08UxvFSCQsCP5n0iz8LqWQMHDz6Bg==",
+      "verifierPub": "MCowBQYDK2VwAyEA7VZtPYab7JOLq8NQJ4CiSAbfGWpFQDY3DVVP331VDxE="
+    },
+    "simulatedReceipt": {
+      "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+      "payment": {
+        "at": "2026-11-08T18:50:19.332Z",
+        "unit": "DEMO_CREDITS",
+        "amount": 50,
+        "intent": "demo:5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+        "network": "SIMULATED",
+        "transactionSignature": null
+      },
+      "taskHash": "b6d2ea6f92db42b286d78003942883e46eb546c406f2d92b90d6078e4fcbcced",
+      "workerPub": "MCowBQYDK2VwAyEAxc+kS2MAKZJMprNBSDK4GFG4UDmErewxWi4xhHw9zQM=",
+      "policyHash": "56f8405cdc2c93a31518a198cd7bb110fdffe162c195aba2568c793198195079",
+      "resultHash": "8519bf0d129418a4e5271e5475819ae7dcdf0e9d2111221860d84b67a37a0f1e",
+      "verifierPub": "MCowBQYDK2VwAyEA7VZtPYab7JOLq8NQJ4CiSAbfGWpFQDY3DVVP331VDxE=",
+      "verdictSignature": "mceEvwRW41x8jEmMQsGY1Qm1pOH8fma/mHHP9Uda0l6cVPXRefObxkbzr08UxvFSCQsCP5n0iz8LqWQMHDz6Bg=="
+    },
+    "solanaIntent": {
+      "memo": "edgeswarm:v1:5bb0aba5-8027-461e-a3ca-52bbc64161a6:a44b5995-82a8-4a7a-af18-b16eda4d8220:be1be41ab5a05b09db467aaf151fe58024760fa1ad9b6e11877e2a7c75b7ebac",
+      "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+      "payer": "2GknRAVAmjv7WNiHiCtahsjVbjzJK5SctiNBbdfXsrav",
+      "status": "CONFIRMED",
+      "cluster": "devnet",
+      "receipt": {
+        "memo": "edgeswarm:v1:5bb0aba5-8027-461e-a3ca-52bbc64161a6:a44b5995-82a8-4a7a-af18-b16eda4d8220:be1be41ab5a05b09db467aaf151fe58024760fa1ad9b6e11877e2a7c75b7ebac",
+        "slot": 520116661,
+        "jobId": "5bb0aba5-8027-461e-a3ca-52bbc64161a6",
+        "payer": "2GknRAVAmjv7WNiHiCtahsjVbjzJK5SctiNBbdfXsrav",
+        "escrow": false,
+        "cluster": "devnet",
+        "explorer": "https://explorer.solana.com/tx/37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk?cluster=devnet",
+        "intentId": "a44b5995-82a8-4a7a-af18-b16eda4d8220",
+        "lamports": 1000000,
+        "blockTime": 1794163821,
+        "checkedAt": "2026-11-08T18:50:21.863Z",
+        "recipient": "51XBcdmMKU2kE8V2UVxVmaZAiorbUH9qEQA87h8zmyXB",
+        "signature": "37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk",
+        "evidenceHash": "be1be41ab5a05b09db467aaf151fe58024760fa1ad9b6e11877e2a7c75b7ebac",
+        "verification": "SERVER_RPC_CHECKED",
+        "confirmationStatus": "finalized"
+      },
+      "intentId": "a44b5995-82a8-4a7a-af18-b16eda4d8220",
+      "lamports": 1000000,
+      "taskHash": "b6d2ea6f92db42b286d78003942883e46eb546c406f2d92b90d6078e4fcbcced",
+      "createdAt": 1794163820418,
+      "expiresAt": 1794164419013,
+      "recipient": "51XBcdmMKU2kE8V2UVxVmaZAiorbUH9qEQA87h8zmyXB",
+      "signature": "37XG6ENuZstcqzfDjcFRR4DnifS1bN12E2id1aAiJ58zTs9246xgonRiA9KmtuHpwmX237MLXkh3y6UhpDP9KqMk",
+      "workerPub": "MCowBQYDK2VwAyEAxc+kS2MAKZJMprNBSDK4GFG4UDmErewxWi4xhHw9zQM=",
+      "resultHash": "8519bf0d129418a4e5271e5475819ae7dcdf0e9d2111221860d84b67a37a0f1e",
+      "transaction": {
+        "base64": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAIEEuTnmwgLmu8surcFy7GGKaTm/BY47RdjuJkTu1/dAwM7kOAweX6bGHKD1s86CsmuwFqad8cvbRXz2a2W7N/ThgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABUpTWpkpIQZNJOhxYNo4fHw1td28kruB5B+oQEEFRI3PsH2ACNAWNVc9+gsdKHNLT+d5N8E0qlQt5ix1VNNTvQICAgABDAIAAABAQg8AAAAAAAMBAJcBZWRnZXN3YXJtOnYxOjViYjBhYmE1LTgwMjctNDYxZS1hM2NhLTUyYmJjNjQxNjFhNjphNDRiNTk5NS04MmE4LTRhN2EtYWYxOC1iMTZlZGE0ZDgyMjA6YmUxYmU0MWFiNWEwNWIwOWRiNDY3YWFmMTUxZmU1ODAyNDc2MGZhMWFkOWI2ZTExODc3ZTJhN2M3NWI3ZWJhYw==",
+        "blockhash": "EyjUySYfi7cvbhTAB6VdGd5u4RJHA3zKPVcNzd54ezWp",
+        "lastValidBlockHeight": 507261529
+      },
+      "verifierPub": "MCowBQYDK2VwAyEA7VZtPYab7JOLq8NQJ4CiSAbfGWpFQDY3DVVP331VDxE=",
+      "evidenceHash": "be1be41ab5a05b09db467aaf151fe58024760fa1ad9b6e11877e2a7c75b7ebac",
+      "verdictSignature": "mceEvwRW41x8jEmMQsGY1Qm1pOH8fma/mHHP9Uda0l6cVPXRefObxkbzr08UxvFSCQsCP5n0iz8LqWQMHDz6Bg==",
+      "authorizationSignature": "yFRRo/u2+dq5nQbB7bdAtzIRs2r9Vr9JWx7D/s9EFJNM5kZMlWCHtDbysMq2oyyo7ceW/xvbiioytm0o1SfhCw=="
+    },
+    "scope": {
+      "verifier": "CENTRALIZED_DEMO",
+      "onChainEscrow": false,
+      "hardwareAttestation": false
+    }
+  }
+}

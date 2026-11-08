@@ -1,3 +1,9 @@
+# Solana Devnet demonstrations
+
+## New: verified-job payment flow
+
+The main app now links verified jobs to `/jobs/:id/pay`. It prepares a fixed 0.001 test-SOL transfer plus an evidence-bound Memo. The backend checks the actual confirmed transaction before recording the receipt. See [integration contract](SOLANA_INTEGRATION.md), [public live-test evidence](evidence/devnet-payment.json), and the README for the real Explorer link. This is not on-chain escrow. The remainder of this document describes the older standalone route, which remains separate.
+
 # Solana Devnet judge demo — reproducible evidence
 
 ## What is implemented
