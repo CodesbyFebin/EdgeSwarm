@@ -66,7 +66,7 @@ See [the Devnet judge walkthrough](docs/DEVNET_JUDGE_DEMO.md) for setup, scope, 
 
 ## Security and deployment
 
-**Do not expose the current jobs API as an unrestricted public service.** The job routes have no authentication, authorization, rate limiting, or durable multi-instance persistence. The local execution and credit engine is not suitable for handling real assets. Wallet approval of a Devnet test transfer does not establish job-verification-based settlement.
+**Production jobs API is operator-locked by default.** The jobs and metrics endpoints return HTTP 503 in production until a 32+ character `EDGESWARM_OPERATOR_API_KEY` environment variable is configured; then they require an `Authorization: Bearer <key>` header. Never embed that key in browser JavaScript or expose it to visitors. This is a fail-closed stopgap, not multi-user authentication. The API still lacks rate limiting, durable multi-instance persistence, and granular authorization. The local execution and credit engine is not suitable for real assets. Wallet approval of a Devnet test transfer does not establish job-verification-based settlement.
 
 Production deployment requires authentication, request limits, durable job and evidence storage, authorized verifier identities, replay protection, a reviewed escrow program, and end-to-end tests.
 
@@ -81,7 +81,8 @@ Production deployment requires authentication, request limits, durable job and e
 - [ ] Real Android-generated evidence verified independently by Node
 - [ ] Live deployed web URL verified from an external browser
 - [ ] Confirmed Devnet transaction signature publicly inspectable
-- [ ] Authenticated and rate-limited public API
+- [x] Production jobs API fail-closed with operator bearer-key guard
+- [ ] Authenticated, authorized, rate-limited multi-user public API
 - [ ] Independent ProofAgent and persisted verdicts
 - [ ] Solana escrow funding, authorized release, refund, and double-release rejection
 - [ ] External security review and production-readiness assessment
