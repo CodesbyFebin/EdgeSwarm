@@ -14,7 +14,11 @@ A full-stack prototype for verifiable edge-agent tasks, built with Next.js, Post
 
 
 
-<img src="docs/assets/final-app.png" alt="Actual live EdgeSwarm final mobile application" width="340" />
+<h2><a href="https://edge-swarm.vercel.app/">Launch the live EdgeSwarm app</a></h2>
+
+Use the real connected app: create a job, inspect verification, and prepare a Solana Devnet payment. No installation required.
+
+[Open desktop dashboard](https://edge-swarm.vercel.app/dashboard) · [Inspect the real Devnet payment](https://github.com/CodesbyFebin/EdgeSwarm/blob/main/docs/evidence/devnet-payment.json)
 
 </div>
 
