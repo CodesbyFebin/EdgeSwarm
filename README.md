@@ -24,7 +24,7 @@ A full-stack prototype for verifiable edge-agent tasks, built with Next.js, Post
 
 Use the real connected app: create a job, inspect verification, and prepare a Solana Devnet payment. No installation required.
 
-[Open desktop dashboard](https://edge-swarm.vercel.app/dashboard) · [Inspect the real Devnet payment](https://github.com/CodesbyFebin/EdgeSwarm/blob/main/docs/evidence/devnet-payment.json)
+[Read implementation guides](https://www.agentswarm.in/docs) · [Open desktop dashboard](https://edge-swarm.vercel.app/dashboard) · [Inspect the real Devnet payment](https://github.com/CodesbyFebin/EdgeSwarm/blob/main/docs/evidence/devnet-payment.json)
 
 </div>
 
@@ -157,3 +157,7 @@ The earlier extended architecture proposal is preserved in [Design Blueprint](do
 Start with a reproducible issue or a small pull request. Include the behavior you changed, tests, and any security or deployment implications. Keep simulated data labeled. Never commit wallet secrets, database credentials, or claims of transactions without evidence.
 
 Licensed under [Apache-2.0](LICENSE).
+
+## Documentation and landing design
+
+The uploaded landing design is adapted for GitHub Pages with real app/evidence links and no simulated live payout counters. The integration brings the current suite to **72 tests**. The `/docs` viewer provides repository-backed implementation guides and a separate, lazy-loaded 100-page unvalidated blueprint archive. Imported design claims and pseudocode are disclosed behind an explicit archive warning, not advertised as working APIs. See [integration notes](docs/SITE_INTEGRATION.md).

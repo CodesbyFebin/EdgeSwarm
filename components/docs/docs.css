@@ -1,0 +1,69 @@
+.docs-view[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f8f7fb;
+  --surface-2: #f1effa;
+  --surface-3: #ffffff;
+  --text: #17171f;
+  --muted: #65656f;
+  --muted-2: #8a8a96;
+  --border: #e7e4ef;
+  --border-2: #ddd8ec;
+  --accent: #9945ff;
+  --accent-2: #14f195;
+  --accent-soft: #f3ecff;
+  --code-bg: #131021;
+  --code-text: #f3effc;
+  --shadow: 0 12px 40px rgba(23, 10, 60, 0.08);
+}
+.docs-view[data-theme="dark"] {
+  --bg: #0b0b14;
+  --surface: #12121f;
+  --surface-2: #1a1a2c;
+  --surface-3: #171726;
+  --text: #f4f4f8;
+  --muted: #b0b0c0;
+  --muted-2: #85859a;
+  --border: #26263a;
+  --border-2: #34344d;
+  --accent: #b56bff;
+  --accent-2: #14f195;
+  --accent-soft: #241b3d;
+  --code-bg: #090914;
+  --code-text: #efeaff;
+  --shadow: 0 16px 44px rgba(0, 0, 0, 0.35);
+}
+.docs-view * { box-sizing: border-box; }
+
+.docs-view { margin: 0; background: var(--bg); color: var(--text); font-family: "Public Sans", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+.docs-view button, .docs-view input { font: inherit; }
+.docs-view a { color: inherit; }
+.docs-view ::selection { background: #9945ff; color: white; }
+.docs-view ::-webkit-scrollbar { width: 8px; height: 8px; }
+.docs-view ::-webkit-scrollbar-thumb { background: #c9c2df; border-radius: 99px; }
+.docs-view[data-theme="dark"] ::-webkit-scrollbar-thumb { background: #3a3a56; }
+.docs-view .font-mono, .docs-view code, .docs-view pre { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.md-h1 { font-size: 2rem; line-height: 1.15; font-weight: 800; letter-spacing: -0.03em; margin: 2.2rem 0 1rem; scroll-margin-top: 110px; }
+.md-h2 { font-size: 1.55rem; line-height: 1.25; font-weight: 800; letter-spacing: -0.025em; margin: 2.4rem 0 0.9rem; padding-top: 0.4rem; border-top: 1px solid var(--border); scroll-margin-top: 110px; }
+.md-h3 { font-size: 1.22rem; line-height: 1.35; font-weight: 700; letter-spacing: -0.015em; margin: 1.8rem 0 0.7rem; scroll-margin-top: 110px; }
+.md-p { font-size: 1.02rem; line-height: 1.78; color: var(--text); margin: 0 0 1.05rem; overflow-wrap: anywhere; }
+.md-p strong { font-weight: 700; }
+.md-ul, .md-ol { margin: 0 0 1.15rem 0; padding-left: 1.35rem; line-height: 1.7; }
+.md-ul li, .md-ol li { margin: 0.38rem 0; overflow-wrap: anywhere; }
+.md-ul { list-style: disc; }
+.md-ol { list-style: decimal; }
+.md-quote { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 0.85rem 1rem; border-radius: 0 10px 10px 0; margin: 0 0 1.1rem; line-height: 1.65; }
+.md-inline-code { background: var(--surface-2); border: 1px solid var(--border); padding: 0.12rem 0.35rem; border-radius: 6px; font-size: 0.86em; color: #7c3aed; }
+.docs-view[data-theme="dark"] .md-inline-code { color: #d3aaff; }
+.md-check { display: flex; gap: 0.6rem; align-items: flex-start; margin: 0.45rem 0; line-height: 1.6; }
+.md-check input { accent-color: var(--accent); margin-top: 0.35rem; width: 16px; height: 16px; flex: none; }
+.grad-text { background: linear-gradient(92deg, #9945ff 5%, #7b2dff 48%, #14f195 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.grad-bg { background: linear-gradient(120deg, #9945ff, #5b21d6 52%, #0dbd7a); }
+.grad-line { background: linear-gradient(90deg, #9945ff, #14f195); }
+.sidebar-link:hover { background: var(--surface-2); }
+.sidebar-link.active { background: var(--accent-soft); color: var(--accent); }
+.docs-view[data-theme="dark"] .sidebar-link.active { color: #d9b6ff; }
+
+.docs-view{min-height:100vh;--safe-area-inset-top:0px}.docs-view h1,.docs-view h2,.docs-view h3{color:var(--text)}.docs-view pre{white-space:pre;overflow:auto}.docs-view summary{cursor:pointer}.docs-view a:focus-visible,.docs-view button:focus-visible,.docs-view input:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.docs-view .blueprint-warning{position:sticky;top:63px;z-index:20;padding:12px 20px;background:#fff2d6;color:#633b00;border-bottom:1px solid #e1b75b;font-size:14px;line-height:1.5}.docs-view .md-p{max-width:82ch}
+@media(prefers-reduced-motion:reduce){.docs-view *{scroll-behavior:auto!important;transition:none!important}}
+
+@media(min-width:1024px){.docs-view[data-mode="blueprints"] .docs-sidebar{top:112px;height:calc(100vh - 112px)}}
