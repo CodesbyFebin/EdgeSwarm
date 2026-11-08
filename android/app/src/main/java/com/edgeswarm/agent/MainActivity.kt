@@ -2,6 +2,10 @@ package com.edgeswarm.agent
 
 import android.app.Activity
 import android.os.Bundle
+import android.content.Intent
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.graphics.Color
 import android.widget.*
 import org.json.JSONObject
@@ -10,6 +14,7 @@ import java.util.UUID
 class MainActivity : Activity() {
     private lateinit var log: TextView
     private lateinit var input: EditText
+    private var lastEvidence: String? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         window.statusBarColor = Color.rgb(5,11,23)
@@ -29,6 +34,26 @@ class MainActivity : Activity() {
         input=EditText(this).apply { setSingleLine(false); setText("hello edgeswarm"); hint="Task input"; setTextColor(Color.WHITE); setHintTextColor(Color.LTGRAY) }
         container.addView(input)
         container.addView(Button(this).apply { text="Execute and sign local task"; setOnClickListener { execute() } })
+        container.addView(Button(this).apply {
+            text="Share evidence JSON"
+            setOnClickListener {
+                val evidence = lastEvidence ?: return@setOnClickListener
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "application/json"
+                    putExtra(Intent.EXTRA_TEXT, evidence)
+                }
+                startActivity(Intent.createChooser(intent, "Export EdgeSwarm evidence"))
+            }
+        })
+        container.addView(Button(this).apply {
+            text="Copy evidence JSON"
+            setOnClickListener {
+                val evidence = lastEvidence ?: return@setOnClickListener
+                val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                clipboard.setPrimaryClip(ClipData.newPlainText("EdgeSwarm evidence", evidence))
+                Toast.makeText(this@MainActivity, "Evidence copied", Toast.LENGTH_SHORT).show()
+            }
+        })
         log=label("Ready. Evidence appears here.",12f,Color.rgb(205,221,237)).apply { setTextIsSelectable(true) }
         container.addView(ScrollView(this).apply { addView(log) },LinearLayout.LayoutParams(-1,0,1f))
         setContentView(container)
@@ -51,8 +76,16 @@ class MainActivity : Activity() {
             val signedBytes=("EDGESWARM_ANDROID_LOCAL_V1\n"+evidence.getString("jobId")+"\n"+
                 evidence.getString("taskHash")+"\n"+evidence.getString("resultHash")).toByteArray(Charsets.UTF_8)
             evidence.put("signatureBase64",AgentCrypto.sign(signedBytes))
+            val isValid = AgentCrypto.verify(
+                signedBytes,
+                evidence.getString("signatureBase64"),
+                evidence.getString("publicKeySpkiBase64")
+            )
+            check(isValid) { "Local evidence signature verification failed" }
+            evidence.put("locallyVerified", true)
             evidence.put("output",output)
-            log.text=evidence.toString(2)
-        }catch(e:Exception){log.text="Error: ${e.message}"}
+            lastEvidence = evidence.toString(2)
+            log.text = lastEvidence
+        }catch(e:Exception){lastEvidence=null;log.text="Error: ${e.message}"}
     }
 }
